@@ -1,8 +1,9 @@
 import java.util.Scanner;
+import java.util.Stack;
 
 /**
- * UC4: Character Array Based Palindrome Check
- * Goal: Use char array and two-pointer technique.
+ * UC5: Stack Based Palindrome Check
+ * Goal: Demonstrate LIFO principle using Stack.
  */
 
 public class PalindroneCheckerApp {
@@ -14,24 +15,22 @@ public class PalindroneCheckerApp {
         System.out.print("Enter a word: ");
         String input = scanner.nextLine();
 
-        // Convert string to character array
-        char[] characters = input.toCharArray();
+        Stack<Character> stack = new Stack<>();
 
-        int start = 0;
-        int end = characters.length - 1;
+        // Push characters
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
 
         boolean isPalindrome = true;
 
-        // Two-pointer comparison
-        while (start < end) {
+        // Compare with popped characters
+        for (int i = 0; i < input.length(); i++) {
 
-            if (characters[start] != characters[end]) {
+            if (input.charAt(i) != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
-
-            start++;
-            end--;
         }
 
         if (isPalindrome) {

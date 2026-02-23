@@ -1,24 +1,8 @@
 import java.util.Scanner;
 
 /**
- * ============================================================
- * MAIN CLASS - PalindroneCheckerApp
- * ============================================================
- *
- * Use Case 3: Palindrome Check Using String Reverse
- *
- * Description:
- * This implementation checks whether a given string is
- * a palindrome by reversing the string and comparing it
- * with the original.
- *
- * Concepts Used:
- * - Scanner (User Input)
- * - String
- * - for loop
- * - charAt()
- * - equalsIgnoreCase() method
- * - String concatenation
+ * UC4: Character Array Based Palindrome Check
+ * Goal: Use char array and two-pointer technique.
  */
 
 public class PalindroneCheckerApp {
@@ -28,18 +12,32 @@ public class PalindroneCheckerApp {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter a word: ");
-        String original = scanner.nextLine();
+        String input = scanner.nextLine();
 
-        String reversed = "";
+        // Convert string to character array
+        char[] characters = input.toCharArray();
 
-        for (int i = original.length() - 1; i >= 0; i--) {
-            reversed = reversed + original.charAt(i);
+        int start = 0;
+        int end = characters.length - 1;
+
+        boolean isPalindrome = true;
+
+        // Two-pointer comparison
+        while (start < end) {
+
+            if (characters[start] != characters[end]) {
+                isPalindrome = false;
+                break;
+            }
+
+            start++;
+            end--;
         }
 
-        if (original.equalsIgnoreCase(reversed)) {
-            System.out.println(original + " is a Palindrome.");
+        if (isPalindrome) {
+            System.out.println(input + " is a Palindrome.");
         } else {
-            System.out.println(original + " is NOT a Palindrome.");
+            System.out.println(input + " is NOT a Palindrome.");
         }
 
         scanner.close();

@@ -1,9 +1,11 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
 /**
- * UC5: Stack Based Palindrome Check
- * Goal: Demonstrate LIFO principle using Stack.
+ * UC6: Queue + Stack Based Palindrome Check
+ * Goal: Demonstrate FIFO vs LIFO.
  */
 
 public class PalindroneCheckerApp {
@@ -15,19 +17,24 @@ public class PalindroneCheckerApp {
         System.out.print("Enter a word: ");
         String input = scanner.nextLine();
 
+        Queue<Character> queue = new LinkedList<>();
         Stack<Character> stack = new Stack<>();
 
-        // Push characters
+        // Enqueue and Push
         for (char c : input.toCharArray()) {
-            stack.push(c);
+            queue.add(c);     // FIFO
+            stack.push(c);    // LIFO
         }
 
         boolean isPalindrome = true;
 
-        // Compare with popped characters
-        for (int i = 0; i < input.length(); i++) {
+        // Compare dequeue and pop
+        while (!queue.isEmpty()) {
 
-            if (input.charAt(i) != stack.pop()) {
+            char fromQueue = queue.remove();  // Dequeue
+            char fromStack = stack.pop();     // Pop
+
+            if (fromQueue != fromStack) {
                 isPalindrome = false;
                 break;
             }

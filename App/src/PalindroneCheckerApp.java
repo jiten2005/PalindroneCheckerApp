@@ -1,21 +1,26 @@
-/**
- * ============================================================
- * MAIN CLASS - UseCase1PalindromeCheckerApp
- * ============================================================
- *
- * Use Case 1: Application Entry & Welcome Message
- *
- * Displays application name and version at startup.
- */
+import java.util.Scanner;
 
 public class PalindroneCheckerApp {
 
     public static void main(String[] args) {
 
-        System.out.println("==============================================");
-        System.out.println(" Welcome to the Palindrome Checker App ");
-        System.out.println("==============================================");
-        System.out.println("Version : 1.0");
-        System.out.println("System initialized successfully.");
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String word = sc.nextLine();
+
+        String reversed = "";
+
+        for (int i = word.length() - 1; i >= 0; i--) {
+            reversed = reversed + word.charAt(i);
+        }
+
+        if (word.equals(reversed)) {
+            System.out.println("It is a Palindrome.");
+        } else {
+            System.out.println("It is NOT a Palindrome.");
+        }
+
+        sc.close();
     }
 }

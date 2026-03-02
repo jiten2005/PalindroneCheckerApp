@@ -1,51 +1,45 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
-import java.util.Stack;
-
-/**
- * UC6: Queue + Stack Based Palindrome Check
- * Goal: Demonstrate FIFO vs LIFO.
- */
+import java.util.*;
 
 public class PalindroneCheckerApp {
 
-    public static void main(String[] args) {
+    public static boolean isPalindrome(String str) {
 
-        Scanner scanner = new Scanner(System.in);
+        Deque<Character> deque = new ArrayDeque<>();
 
-        System.out.print("Enter a word: ");
-        String input = scanner.nextLine();
+        str = str.toLowerCase();
 
-        Queue<Character> queue = new LinkedList<>();
-        Stack<Character> stack = new Stack<>();
-
-        // Enqueue and Push
-        for (char c : input.toCharArray()) {
-            queue.add(c);     // FIFO
-            stack.push(c);    // LIFO
-        }
-
-        boolean isPalindrome = true;
-
-        // Compare dequeue and pop
-        while (!queue.isEmpty()) {
-
-            char fromQueue = queue.remove();  // Dequeue
-            char fromStack = stack.pop();     // Pop
-
-            if (fromQueue != fromStack) {
-                isPalindrome = false;
-                break;
+        // insert characters into deque
+        for (char c : str.toCharArray()) {
+            if (Character.isLetterOrDigit(c)) {
+                deque.addLast(c);
             }
         }
 
-        if (isPalindrome) {
-            System.out.println(input + " is a Palindrome.");
-        } else {
-            System.out.println(input + " is NOT a Palindrome.");
+        // compare front and rear
+        while (deque.size() > 1) {
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
+
+            if (front != rear) {
+                return false;
+            }
         }
 
-        scanner.close();
+        return true;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String input = sc.nextLine();
+
+        if (isPalindrome(input))
+            System.out.println("Palindrome");
+        else
+            System.out.println("Not a Palindrome");
+
+        sc.close();
     }
 }

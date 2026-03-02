@@ -16,6 +16,7 @@ public class PalindroneCheckerApp {
 
     // Insert characters into linked list
     static void insert(char data) {
+
         Node newNode = new Node(data);
 
         if (head == null) {

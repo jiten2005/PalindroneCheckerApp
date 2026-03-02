@@ -25,7 +25,9 @@ public class PalindroneCheckerApp {
             Node temp = head;
             while (temp.next != null) {
                 temp = temp.next;
-            }
+            } UC8
+
+=======
             temp.next = newNode;
         }
     }
@@ -59,6 +61,7 @@ public class PalindroneCheckerApp {
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
+ main
         }
 
         // Reverse second half

@@ -13,6 +13,7 @@ public class PalindroneCheckerApp {
             if (Character.isLetterOrDigit(c)) {
                 deque.addLast(c);
             }
+
         }
 
         // compare front and rear
